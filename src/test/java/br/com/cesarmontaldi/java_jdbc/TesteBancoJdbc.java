@@ -10,13 +10,13 @@ import br.com.cesarmontaldi.model.User;
 public class TesteBancoJdbc {
 	 
 	@Test
-	public void initBanco() {
+	public void create() {
 		UserDAO userDAO = new UserDAO();
 		User user = new User();
 		
-		user.setId(5L);
-		user.setNome("Carlos Silva");
-		user.setEmail("carlos.silva@yahoo.com.br");
+		user.setNome("Marcos Roberto");
+		user.setEmail("marcos.roberto@gmail.com");
+		
 		userDAO.salvar(user);
 	}
 	

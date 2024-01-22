@@ -20,12 +20,14 @@ public class UserDAO {
 	
 	public void salvar(User user) {
 		try {
-			String sql = "insert into users (id, nome, email) values (?, ?, ?)";
+			String sql = "insert into users (nome, email) values (?, ?)";
+			
 			PreparedStatement insert = connection.prepareStatement(sql);
-			insert.setLong(1, user.getId());
-			insert.setString(2, user.getNome());
-			insert.setString(3, user.getEmail());
+			
+			insert.setString(1, user.getNome());
+			insert.setString(2, user.getEmail());
 			insert.execute();
+			
 			connection.commit();// salva no banco de dados.
 		
 		}catch (Exception e) {

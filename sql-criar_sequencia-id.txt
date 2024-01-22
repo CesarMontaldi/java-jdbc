@@ -1,0 +1,8 @@
+
+create SEQUENCE usersequence 
+increment 1
+minvalue 1
+maxvalue 9223372036854775807
+start 6;
+
+alter table users alter column id set default nextval('usersequence'::regclass);
