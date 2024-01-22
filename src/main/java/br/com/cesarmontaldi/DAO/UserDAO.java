@@ -109,6 +109,25 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	public void deletar(Long id) {
+
+		try {
+			String sql = "delete from users where id = " + id;
+			PreparedStatement delete = connection.prepareStatement(sql);
+			
+			delete.execute();
+			connection.commit();
+		
+		} catch(Exception e) {
+			try {
+				connection.rollback();
+			} catch (SQLException c) {
+				c.printStackTrace();
+			}
+			e.printStackTrace();
+		}
+	}
 
 }
 
