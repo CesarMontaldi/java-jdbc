@@ -1,4 +1,4 @@
-package com.br.cesarmontaldi.java_jdbc;
+package br.com.cesarmontaldi.java_jdbc;
 
 import org.junit.Test;
 
