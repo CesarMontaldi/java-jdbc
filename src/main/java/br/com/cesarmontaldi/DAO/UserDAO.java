@@ -2,7 +2,10 @@ package br.com.cesarmontaldi.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.cesarmontaldi.conexaojdbc.SingleConnection;
 import br.com.cesarmontaldi.model.User;
@@ -29,11 +32,59 @@ public class UserDAO {
 			try {
 				connection.rollback();// reverte a operação caso aconteça algum erro.
 			} catch (SQLException c) {
-				// TODO Auto-generated catch block
 				c.printStackTrace();
 			}
 			e.printStackTrace();
 		}
+	}
+	
+	public List<User> listar() {
+		List<User> list = new ArrayList<User>();
+		
+		try {
+			String sql = "Select * from users";
+			
+			PreparedStatement select = connection.prepareStatement(sql);
+			ResultSet resultSet = select.executeQuery();
+			
+			while (resultSet.next()) {
+				User user = new User();
+				user.setId(resultSet.getLong("id"));
+				user.setNome(resultSet.getString("nome"));
+				user.setEmail(resultSet.getString("email"));
+				
+				list.add(user);
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+	
+	
+	public User buscar(Long id) {
+		User user = new User();
+		
+		try {
+			String sql = "Select * from users where id = " + id;
+			
+			PreparedStatement select = connection.prepareStatement(sql);
+			ResultSet resultSet = select.executeQuery();
+			
+			while (resultSet.next()) {// Retorna um ou nenhum.
+				
+				user.setId(resultSet.getLong("id"));
+				user.setNome(resultSet.getString("nome"));
+				user.setEmail(resultSet.getString("email"));
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return user;
 	}
 
 }

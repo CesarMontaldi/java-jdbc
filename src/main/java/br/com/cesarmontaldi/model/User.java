@@ -8,7 +8,7 @@ public class User {
 	
 	public Long getId() {
 		return id;
-	}
+	} 
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -23,6 +23,11 @@ public class User {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	@Override
+	public String toString() {
+		return "User id= " + id + ", nome= " + nome + ", email= " + email;
 	}
 	
 }

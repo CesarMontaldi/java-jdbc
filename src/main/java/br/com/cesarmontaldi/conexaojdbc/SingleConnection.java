@@ -17,7 +17,7 @@ public class SingleConnection {
 	public SingleConnection() {
 		conectar();
 	}
-	
+	 
 	private static void conectar() {
 		try {
 			
@@ -25,7 +25,6 @@ public class SingleConnection {
 				Class.forName("org.postgresql.Driver");
 				connection = DriverManager.getConnection(url, user, password);
 				connection.setAutoCommit(false);
-				System.out.println("Conexão realizada com sucesso!");
 			}
 			
 		} catch (Exception e) {
