@@ -86,5 +86,35 @@ public class UserDAO {
 		
 		return user;
 	}
+	
+	public void atualizar(User user) {
+		
+		try {
+			String sql = "update users set nome = ? where id = " + user.getId();
+			PreparedStatement update = connection.prepareStatement(sql);
+			
+			update.setString(1, user.getNome());
+			
+			update.execute();
+			connection.commit();
+		
+		} catch(Exception e) {
+			try {
+				connection.rollback();
+			} catch (SQLException c) {
+				c.printStackTrace();
+			}
+			e.printStackTrace();
+		}
+	}
 
 }
+
+
+
+
+
+
+
+
+

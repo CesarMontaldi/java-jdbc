@@ -8,7 +8,7 @@ import br.com.cesarmontaldi.DAO.UserDAO;
 import br.com.cesarmontaldi.model.User;
 
 public class TesteBancoJdbc {
-	
+	 
 	@Test
 	public void initBanco() {
 		UserDAO userDAO = new UserDAO();
@@ -38,4 +38,23 @@ public class TesteBancoJdbc {
 		User user = dao.buscar(1L);
 		System.out.println(user);
 	}
+	
+	@Test
+	public void atualizar() {
+		try {
+			UserDAO dao = new UserDAO();
+		
+			User userBanco = dao.buscar(5L);
+			userBanco.setNome("Carlos Eduardo Da Silva");
+			
+			dao.atualizar(userBanco);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+
+	}
 }
+
+
+
