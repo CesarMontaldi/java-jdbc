@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.cesarmontaldi.conexaojdbc.SingleConnection;
+import br.com.cesarmontaldi.model.Telefone;
 import br.com.cesarmontaldi.model.User;
 
 public class UserDAO {
@@ -126,6 +127,31 @@ public class UserDAO {
 				c.printStackTrace();
 			}
 			e.printStackTrace();
+		}
+	}
+	
+	//--------------------------TELEFONES------------------------------------
+	
+	public void salvarTelefone(Telefone telefone) { 
+		
+		try {
+			String sql = "insert into telefoneuser (numero, tipo, usuariopessoa) values (?, ?, ?)";
+			PreparedStatement insert = connection.prepareStatement(sql);
+			
+			insert.setString(1, telefone.getNumero());
+			insert.setString(2, telefone.getTipo());
+			insert.setLong(3, telefone.getUserId());
+			insert.execute();
+
+			connection.commit();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				connection.rollback();
+			} catch (SQLException c) {
+				c.printStackTrace();
+			}
 		}
 	}
 

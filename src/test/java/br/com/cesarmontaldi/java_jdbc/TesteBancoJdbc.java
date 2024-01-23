@@ -5,6 +5,7 @@ import java.util.List;
 import org.junit.Test;
 
 import br.com.cesarmontaldi.DAO.UserDAO;
+import br.com.cesarmontaldi.model.Telefone;
 import br.com.cesarmontaldi.model.User;
 
 public class TesteBancoJdbc {
@@ -65,7 +66,24 @@ public class TesteBancoJdbc {
 			e.printStackTrace();
 		}
 	}
+	
+	//--------------------------TELEFONES------------------------------------
+	
+	@Test
+	public void salvarTelefone() {
+		
+		Telefone telefone = new Telefone();
+		telefone.setNumero("(19)9 8852-0023");
+		telefone.setTipo("Celular");
+		telefone.setUserId(1L);
+		
+		UserDAO dao = new UserDAO();
+		dao.salvarTelefone(telefone);
+	}
 }
+
+
+
 
 
 

@@ -1,0 +1,22 @@
+/*Cria um sequenciador de Id no banco*/
+
+create SEQUENCE usersequence 
+increment 1
+minvalue 1
+maxvalue 9223372036854775807
+start 1;
+
+alter table users alter column id set default nextval('usersequence'::regclass);
+
+/*Cria uma constraint de unique para o campo Id*/
+
+alter table users add unique (id);
+
+/*Cria uma chave estrangeira para associar com a tabela users*/
+
+alter table telefoneuser add foreign key (usuariopessoa) references users(id);
+
+/*Cria uma constraint de prymary key para o campo Id*/
+
+  ALTER TABLE public.users
+  ADD CONSTRAINT user_pk PRIMARY KEY(id);
