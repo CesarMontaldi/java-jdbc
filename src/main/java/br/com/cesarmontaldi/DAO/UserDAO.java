@@ -156,7 +156,7 @@ public class UserDAO {
 		}
 	}
 	
-	public List<BeanUserFone> listaUserFone (Long userId) {
+	public List<BeanUserFone> listaUserFone(Long userId) {
 		
 		List<BeanUserFone> beanUserFones = new ArrayList<BeanUserFone>();
 		
@@ -181,6 +181,30 @@ public class UserDAO {
 		} 
 		
 		return beanUserFones;
+	}
+	
+	public void deleteFonesPorUser(Long userId) {
+		
+		String sqlFone = "delete from telefoneuser where usuariopessoa = " + userId;
+		String sqlUser = "delete from users where id = " + userId;
+		
+		try {
+			PreparedStatement delete = connection.prepareStatement(sqlFone);
+			delete.executeUpdate();
+			connection.commit();
+			
+		    delete = connection.prepareStatement(sqlUser);
+		    delete.executeUpdate();
+			connection.commit();
+		
+		}catch (Exception e) {
+			e.printStackTrace();
+			try {
+				connection.rollback();
+			} catch (SQLException c) {
+				c.printStackTrace();
+			}
+		}
 	}
 
 }

@@ -74,9 +74,9 @@ public class TesteBancoJdbc {
 	public void salvarTelefone() {
 		
 		Telefone telefone = new Telefone();
-		telefone.setNumero("(19)9 8852-0023");
-		telefone.setTipo("Celular");
-		telefone.setUserId(1L);
+		telefone.setNumero("(19) 3854-1330");
+		telefone.setTipo("Casa");
+		telefone.setUserId(5L);
 		
 		UserDAO dao = new UserDAO();
 		dao.salvarTelefone(telefone);
@@ -94,6 +94,13 @@ public class TesteBancoJdbc {
 			System.out.println(beanUserFone);
 			System.out.println("--------------------------------------------");
 		}
+	}
+	
+	@Test 
+	public void deleteUserFone() {
+		
+		UserDAO dao = new UserDAO();
+		dao.deleteFonesPorUser(5L);
 	}
 	
 }
