@@ -5,6 +5,7 @@ import java.util.List;
 import org.junit.Test;
 
 import br.com.cesarmontaldi.DAO.UserDAO;
+import br.com.cesarmontaldi.model.BeanUserFone;
 import br.com.cesarmontaldi.model.Telefone;
 import br.com.cesarmontaldi.model.User;
 
@@ -80,6 +81,21 @@ public class TesteBancoJdbc {
 		UserDAO dao = new UserDAO();
 		dao.salvarTelefone(telefone);
 	}
+	
+	@Test
+	public void listaUserFones() {
+		
+		UserDAO dao = new UserDAO();
+		
+		List<BeanUserFone> beanUserFones = dao.listaUserFone(1L);
+		
+		for (BeanUserFone beanUserFone : beanUserFones) {
+			
+			System.out.println(beanUserFone);
+			System.out.println("--------------------------------------------");
+		}
+	}
+	
 }
 
 

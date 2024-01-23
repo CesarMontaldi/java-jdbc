@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.cesarmontaldi.conexaojdbc.SingleConnection;
+import br.com.cesarmontaldi.model.BeanUserFone;
 import br.com.cesarmontaldi.model.Telefone;
 import br.com.cesarmontaldi.model.User;
 
@@ -153,6 +154,33 @@ public class UserDAO {
 				c.printStackTrace();
 			}
 		}
+	}
+	
+	public List<BeanUserFone> listaUserFone (Long userId) {
+		
+		List<BeanUserFone> beanUserFones = new ArrayList<BeanUserFone>();
+		
+		try {
+			String sql = "SELECT nome, numero, email from telefoneuser as fone inner join"
+					+ " users as userfone on fone.usuariopessoa = userfone.id where userfone.id = " + userId;
+			PreparedStatement selectJoin = connection.prepareStatement(sql);
+		
+			ResultSet resultSet = selectJoin.executeQuery();
+			
+			while (resultSet.next()) {
+				
+				BeanUserFone userFone = new BeanUserFone();
+				userFone.setNome(resultSet.getString("nome"));
+				userFone.setNumero(resultSet.getString("numero"));
+				userFone.setEmail(resultSet.getString("email"));
+				
+				beanUserFones.add(userFone);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		} 
+		
+		return beanUserFones;
 	}
 
 }
